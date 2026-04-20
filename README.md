@@ -3,6 +3,9 @@
 
 **Production-minded Chrome Extension that pulls clean app URLs from Google Play and Apple App Store search pages with dedupe and noise filtering built in.**
 
+[![Chrome Store](https://img.shields.io/badge/platform-Chrome_Extension-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chromewebstore.google.com/search/OstinUA)
+[![Chrome Portfolio](https://img.shields.io/badge/Chrome_Web_Store-Portfolio-34A853?style=for-the-badge&logo=google-chrome&logoColor=white)](https://ostinua.github.io/Chrome-Web-Store_Developer-List/)
+
 [![Manifest](https://img.shields.io/badge/Manifest-V3-1a73e8?style=for-the-badge&logo=googlechrome)](manifest.json)
 [![Version](https://img.shields.io/badge/Version-3.2-2f4f4f?style=for-the-badge)](manifest.json)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-f7df1e?style=for-the-badge&logo=javascript&logoColor=1f1f1f)](popup.js)
