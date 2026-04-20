@@ -14,6 +14,8 @@
  * document.addEventListener('DOMContentLoaded', initializePopup);
  */
 async function initializePopup() {
+  initializeThemeToggle();
+
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   const btn = document.getElementById('run');
   const status = document.getElementById('status');
@@ -26,13 +28,42 @@ async function initializePopup() {
     status.innerText = 'Apple App Store';
     btn.onclick = () => runScript(tab.id, extractAppleStoreLinks);
   } else {
-    status.innerText = 'Сайт не поддерживается';
+    status.innerText = 'Unsupported site';
     btn.disabled = true;
     errorMsg.classList.remove('hidden');
   }
 }
 
 document.addEventListener('DOMContentLoaded', initializePopup);
+
+/**
+ * Enables dark and light theme toggling for the popup.
+ *
+ * Reads the previous selection from localStorage, applies it to the root
+ * element, and updates the corner toggle button. On each click, it switches
+ * between light and dark modes and persists the new choice.
+ *
+ * @returns {void}
+ */
+function initializeThemeToggle() {
+  const root = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+
+  const applyTheme = (theme) => {
+    root.setAttribute('data-theme', theme);
+    toggle.innerText = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+  };
+
+  const savedTheme = localStorage.getItem('theme');
+  applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
+
+  toggle.addEventListener('click', () => {
+    const currentTheme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', nextTheme);
+    applyTheme(nextTheme);
+  });
+}
 
 /**
  * Executes the provided extraction function in the active tab.
@@ -88,7 +119,6 @@ function extractGooglePlayLinks() {
     const isInsideFooter = link.closest('footer');
 
     if (isVisible && !isInsideFooter) {
-      // Ignore malformed URLs so one bad anchor does not interrupt extraction.
       try {
         const url = new URL(link.href);
         const appId = url.searchParams.get('id');
@@ -126,7 +156,6 @@ function extractAppleStoreLinks() {
     const isInsideFooter = link.closest('footer') || link.closest('#globalnav');
 
     if (isVisible && !isInsideFooter) {
-      // Ignore malformed URLs so one bad anchor does not interrupt extraction.
       try {
         const url = new URL(link.href);
         const match = url.pathname.match(/id\d+/);
