@@ -171,7 +171,7 @@ Build notes:
 2) Run your query and scroll to hydrate more result cards
 3) Click extension icon
 4) Verify status shows "Google Play Store"
-5) Click "Собрать ссылки"
+5) Click "Extract Links"
 6) Copy normalized links from textarea output
 ```
 
@@ -182,12 +182,12 @@ Build notes:
 2) Ensure app cards are visible in viewport/result blocks
 3) Click extension icon
 4) Verify status shows "Apple App Store"
-5) Click "Собрать ссылки"
+5) Click "Extract Links"
 6) Copy normalized links from textarea output
 ```
 
-> [!CAUTION]
-> The popup UI text is partially Russian (`Собрать ссылки`, `Сайт не поддерживается`). Keep that in mind if you are documenting screenshots or onboarding non-Russian-speaking users.
+> [!TIP]
+> The popup UI is fully in English and now includes a dark/light theme switch in the top-right corner.
 
 ## Configuration
 
