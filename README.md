@@ -74,7 +74,9 @@
 ├── LICENSE                     # GPL-3.0 license
 ├── manifest.json               # MV3 metadata, permissions, action config
 ├── popup.html                  # Popup UI shell
-├── popup.js                    # Domain detection + extraction algorithms
+├── src/
+│   ├── extractors/             # Store-specific extraction functions
+│   └── popup/                  # Popup UI controller and modules
 └── README.md                   # Project docs
 ```
 
